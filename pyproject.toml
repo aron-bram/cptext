@@ -1,0 +1,20 @@
+[project]
+name = "cptext"
+version = "0.1.0"
+dependencies = [
+    "pyscreenshot",
+    "pyperclip",
+    "pytesseract",
+    "gi",
+]
+requires-python = ">=3.7"
+authors = [{ name = "Aron Bahram", email = "bahrama@cs.uni-freiburg.de" }]
+description = "A simple script to take screenshots and extract text using OCR"
+license = {file = "LICENSE"}
+readme = "README.md"
+
+[project.urls]
+repository = "https://github.com/aron-bram/cptext"
+
+[tool.black]
+line-length = 88
