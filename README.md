@@ -1,5 +1,5 @@
 # cptext
-A useful tool for taking for extracting text from a selected region of a screenshot.
+A useful screenshotting tool for extracting text from a selected region of a screenshot.
 
 ## Installation (fedora):
 `sudo dnf install cairo cairo-devel`
