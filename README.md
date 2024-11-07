@@ -1,4 +1,5 @@
 # cptext
+A useful tool for extracting text from a selection of a screenshot to the clipboard.
 
 ## Installation (fedora):
 `sudo dnf install cairo cairo-devel`
