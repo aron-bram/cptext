@@ -2,8 +2,11 @@
 
 ## Installation (fedora):
 `sudo dnf install cairo cairo-devel`
+
 `sudo dnf install gobject-introspection gobject-introspection-devel`
+
 `sudo dnf install cairo-gobject cairo-gobject-devel`
+
 `sudo dnf install gi`
 
 `sudo dnf install tesseract`
