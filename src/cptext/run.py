@@ -4,7 +4,11 @@ gi.require_version("Gtk", "3.0")
 import pyperclip
 import pyscreenshot as ImageGrab
 import pytesseract
-from gi.repository import Gdk, Gtk
+
+# isort: off
+from gi.repository import Gtk, Gdk # Gtk has to come before Gdk
+
+# isort: on
 
 # List to store clicked points (top-left and bottom-right)
 click = []
@@ -51,6 +55,13 @@ def select_area_and_capture(c1, c2):
 def on_destroy(window):
     print("Closing window...")
     Gtk.main_quit()
+
+
+# Function to handle key press events
+def on_key_press(window, event):
+    if event.keyval == Gdk.KEY_Escape:
+        print("Escape key pressed. Exiting.")
+        on_destroy(window)
 
 
 def main():
@@ -101,8 +112,9 @@ def main():
     window.set_opacity(0.64)  # Adjust opacity as desired
     window.connect("destroy", on_destroy)
 
-    # Connect the mouse click event
+    # Connect the mouse click event and key press event
     window.connect("button-press-event", getorigin)
+    window.connect("key-press-event", on_key_press)  # Listen for key press events
 
     # Display the window
     window.show_all()
