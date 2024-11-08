@@ -1,12 +1,14 @@
 import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk
-import pyscreenshot as ImageGrab
+
+gi.require_version("Gtk", "3.0")
 import pyperclip
+import pyscreenshot as ImageGrab
 import pytesseract
+from gi.repository import Gdk, Gtk
 
 # List to store clicked points (top-left and bottom-right)
 click = []
+
 
 # Function to capture the selected area when two points are clicked
 def getorigin(widget, event):
@@ -19,6 +21,7 @@ def getorigin(widget, event):
     # For some reason getorigin gets called twice on each click
     if len(click) == 4:
         select_area_and_capture(click[0], click[2])
+
 
 # Function to take screenshot of selected area
 def select_area_and_capture(c1, c2):
@@ -38,13 +41,17 @@ def select_area_and_capture(c1, c2):
         pyperclip.copy(text)
         print("Text extracted and copied to clipboard.")
     except ValueError as e:
-        print(f"Error: {e}. Please make sure the top-left corner is selected before the bottom-right corner.")
+        print(
+            f"Error: {e}. Please make sure the top-left corner is selected before the bottom-right corner."
+        )
         return
+
 
 # Main GTK setup
 def on_destroy(window):
     print("Closing window...")
     Gtk.main_quit()
+
 
 def main():
     global click
@@ -54,7 +61,9 @@ def main():
     window.set_decorated(False)
     # Set the window size to cover the entire screen area
     screen = Gdk.Screen.get_default()
-    monitor = screen.get_monitor_geometry(0)  # Use the first monitor (adjust if necessary)
+    monitor = screen.get_monitor_geometry(
+        0
+    )  # Use the first monitor (adjust if necessary)
     window.set_default_size(monitor.width, monitor.height)
 
     # Create an overlay to add the red border
@@ -73,18 +82,18 @@ def main():
 
     # Set CSS styling for the red border
     css_provider = Gtk.CssProvider()
-    css_provider.load_from_data(b"""
+    css_provider.load_from_data(
+        b"""
         #border-frame {
             border-width: 4px;
             border-color: red;
             border-style: solid;
         }
-    """)
+    """
+    )
     style_context = Gtk.StyleContext()
     style_context.add_provider_for_screen(
-        Gdk.Screen.get_default(),
-        css_provider,
-        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     )
 
     # Make the window transparent and set opacity
@@ -101,6 +110,7 @@ def main():
 
     # Start the GTK main loop
     Gtk.main()
+
 
 if __name__ == "__main__":
     main()
