@@ -20,13 +20,6 @@ def getorigin(widget, event):
     if len(click) == 4:
         select_area_and_capture(click[0], click[2])
 
-
-# Main GTK setup
-def on_destroy(window):
-    print("Closing window...")
-    Gtk.main_quit()
-
-
 # Function to take screenshot of selected area
 def select_area_and_capture(c1, c2):
     dummy = None
@@ -48,21 +41,55 @@ def select_area_and_capture(c1, c2):
         print(f"Error: {e}. Please make sure the top-left corner is selected before the bottom-right corner.")
         return
 
+# Main GTK setup
+def on_destroy(window):
+    print("Closing window...")
+    Gtk.main_quit()
 
 def main():
     global click
 
     # Create a new GTK window
     window = Gtk.Window(title="Select area for screenshot")
-
+    window.set_decorated(False)
     # Set the window size to cover the entire screen area
     screen = Gdk.Screen.get_default()
     monitor = screen.get_monitor_geometry(0)  # Use the first monitor (adjust if necessary)
     window.set_default_size(monitor.width, monitor.height)
 
-    # Make the window transparent, keep title bar, and avoid blacking out
+    # Create an overlay to add the red border
+    overlay = Gtk.Overlay()
+    window.add(overlay)
+
+    # Set a transparent background widget as the main area
+    main_area = Gtk.DrawingArea()
+    overlay.add(main_area)
+
+    # Add the red border frame as an overlay
+    border_frame = Gtk.Frame()
+    border_frame.set_shadow_type(Gtk.ShadowType.NONE)  # Remove default shadow
+    border_frame.set_name("border-frame")  # Set name for CSS styling
+    overlay.add_overlay(border_frame)
+
+    # Set CSS styling for the red border
+    css_provider = Gtk.CssProvider()
+    css_provider.load_from_data(b"""
+        #border-frame {
+            border-width: 4px;
+            border-color: red;
+            border-style: solid;
+        }
+    """)
+    style_context = Gtk.StyleContext()
+    style_context.add_provider_for_screen(
+        Gdk.Screen.get_default(),
+        css_provider,
+        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+    )
+
+    # Make the window transparent and set opacity
     window.set_app_paintable(True)
-    window.set_opacity(0.3)  # Adjust opacity (optional, change as needed)
+    window.set_opacity(0.64)  # Adjust opacity as desired
     window.connect("destroy", on_destroy)
 
     # Connect the mouse click event
@@ -73,7 +100,7 @@ def main():
     print("Select the top-left corner and then the bottom-right corner.")
 
     # Start the GTK main loop
-    Gtk.main()  # Ensure this starts the GTK event loop
+    Gtk.main()
 
 if __name__ == "__main__":
     main()
