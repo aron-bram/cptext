@@ -18,7 +18,7 @@ A useful screenshotting tool for extracting text from a selected region of a scr
 `python3 -c "import gi; print(gi.__version__)"`
 
 ## Usage:
-Tun `python cptext.py`
+Run `python cptext.py`
 
  1.  This opens up a full screen transparent window with a slightly transparent title bar for better visual representation of the area you can select
  2.  Select an area within this window by clicking twice, where the first click defines the top left corner of the selection, and the second click defines the bottom right corner
