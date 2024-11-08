@@ -1,5 +1,5 @@
 # cptext
-A useful screenshotting tool for extracting text from a selected region of a screenshot.
+A useful fast screenshotting tool for copying text to clipboard from a selected region of a screenshot.
 
 ## Installation (fedora):
 `sudo dnf install cairo cairo-devel`
@@ -20,6 +20,7 @@ A useful screenshotting tool for extracting text from a selected region of a scr
 ## Usage:
 Run `python cptext.py`
 
- 1.  This opens up a full screen transparent window with a slightly transparent title bar for better visual representation of the area you can select
+ 1.  This opens up a full screen transparent window with a red boarder for better visual representation of the area you can select
  2.  Select an area within this window by clicking twice, where the first click defines the top left corner of the selection, and the second click defines the bottom right corner
  3.  The text is automatically extracted, and copied to the clipboard
+ 4.  Paste your text anywhere
