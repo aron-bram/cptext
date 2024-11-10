@@ -20,7 +20,7 @@ A useful fast screenshotting tool for copying text to clipboard from a selected 
 ## Usage:
 Run `python cptext.py`
 
- 1.  This opens up a full screen transparent window with a red boarder for better visual representation of the area you can select
+ 1.  This opens up a full screen transparent window with a red border for better visual representation of the area you can select
  2.  Select an area within this window by clicking twice, where the first click defines the top left corner of the selection, and the second click defines the bottom right corner
  3.  The text is automatically extracted, and copied to the clipboard
  4.  Paste your text anywhere
