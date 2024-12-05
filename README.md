@@ -1,5 +1,8 @@
 # cptext
-A rapid screenshotting tool for copying text to clipboard extracted from a selected region of a screenshot.
+
+**Turn screenshots into text**
+
+A rapid screenshotting tool for copying text to clipboard extracted from a selected region of a screenshot
 
 ## Installation (fedora):
 `sudo dnf install cairo cairo-devel`
