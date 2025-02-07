@@ -16,6 +16,7 @@ A rapid screenshotting tool for copying text to clipboard extracted from a selec
 `sudo dnf install tesseract`
 
 `pip install evdev pyscreenshot pytesseract pyperclip`
+
 `pip install PyGObject`
 
 `python3 -c "import gi; print(gi.__version__)"`
